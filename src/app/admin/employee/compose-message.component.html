@@ -1,0 +1,51 @@
+<br>
+    <form #compForm="ngForm" (submit)="createMsg()">
+    <div class="row">
+        <div class="col-md-6" *ngIf="departments">
+            <label>Select Department</label>
+            <select required #deptSel (change)="onDepartmentSelected(deptSel.value)" class="form-control">
+                <option [value]="-1">---Select---</option>
+                <option *ngFor="let dept of departments" [value]="dept.dept_id">
+                    {{dept.dept_name}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-6" *ngIf="employees">
+            <label>Select Employee</label>
+            <select #empSel (change)="onEmployeeSelected(empSel.value)" class="form-control">
+                <option [value]="-1">---Select---</option>
+                <option *ngFor="let emp of employees" [value]="emp.id">
+                    {{emp.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Compose Message</h3>
+        </div>
+        <div class="card-body">
+            <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Title</mat-label>
+                <input required matInput type="text" name="title" [(ngModel)]="message.msg_title" 
+                    #title="ngModel" [ngClass]="{'is-invalid':title.touched && title.invalid}">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Subject</mat-label>
+                <textarea required matInput type="text" name="subject" [(ngModel)]="message.msg_subject" 
+                #subject="ngModel" [ngClass]="{'is-invalid':subject.touched && subject.invalid}"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" [disabled]="compForm.invalid">Compose</button>
+        </div>
+    </div>
+</form>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait.Loading Data... </p>  
+  </ngx-spinner> 
+
+  {{compForm.value | json}}

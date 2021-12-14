@@ -1,0 +1,57 @@
+<form #prodForm="ngForm">
+    <div class="card">
+        <div class="card-header">
+            <h3>Add Product</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group col-md-6">
+                <label>Category</label>
+                <select required class="form-control" [(ngModel)]="prodcut.CategoryID" name="cat"
+                    #cat="ngModel">
+                    <option *ngFor="let cat of category" [value]="cat.CategoryID">
+                        {{cat.CategoryName}}
+                    </option>
+                </select>
+                <div class="text-danger" *ngIf="cat.touched">
+                    <p *ngIf="cat.errors?.required"> Required</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label>Product Name</label>
+                    <input required class="form-control" [(ngModel)]="prodcut.ProductName" name="prodname" 
+                    #prodname="ngModel">
+                    <div class="text-danger" *ngIf="prodname.touched">
+                        <p *ngIf="prodname.errors?.required"> Required</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Product Price</label>
+                    <input pattern="^[0-9]*$" required class="form-control" [(ngModel)]="prodcut.ProductPrice" name="price" 
+                    #price="ngModel">
+                    <div class="text-danger" *ngIf="price.touched">
+                        <p *ngIf="price.errors?.required"> Required</p>
+                        <p *ngIf="price.errors?.pattern">Invalid price</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input required class="form-control" [(ngModel)]="prodcut.ProductDescription" name="desc" 
+                #desc="ngModel">
+                <div class="text-danger" *ngIf="desc.touched">
+                    <p *ngIf="desc.errors?.required"> Required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="file" (change)="handleFileSelect($event)">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" [disabled]="prodForm.invalid || base64textString?.length == 0" (click)="submit()">Submit</button>
+        </div>
+    </div>
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait... </p>
+</ngx-spinner>

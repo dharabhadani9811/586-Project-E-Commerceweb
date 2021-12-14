@@ -1,0 +1,42 @@
+<br>
+<form #deptForm="ngForm" (submit)="saveDept()">
+<div class="container-fluid">
+    <div class="mat-elevation-z8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{title}} Department</h3>
+            </div>
+            <div class="card-body" *ngIf="department">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input required name="name" class="form-control" [(ngModel)]="department.dept_name"
+                        #name="ngModel" [ngClass]="{'is-invalid':name.touched && name.invalid}">
+                    <div class="invalid-feedback" *ngIf="name.touched && name.invalid">
+                        <p *ngIf="name.errors?.required"> Name is required </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <select [required]="department.dept_type==null" class="form-control" 
+                        [(ngModel)]="department.dept_type" #type="ngModel" name="type"
+                    [ngClass]="{'is-invalid':type.touched && type.invalid}">
+                            <option [ngValue]="null">--Select--</option>
+                            <option>Full-Time</option>
+                            <option>Part-Time</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="type.touched && type.invalid"> 
+                        <p *ngIf="type.errors?.required">Department is required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn" [disabled]="deptForm.invalid" 
+                style="background-color: #2C3539;color: white;">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait.Loading Data... </p>
+</ngx-spinner>

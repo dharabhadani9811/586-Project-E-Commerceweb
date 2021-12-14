@@ -1,0 +1,83 @@
+<br>
+<div class="mat-elevation-z8">
+    <div class="card">
+        <div class="card-body">
+            <table mat-table [dataSource]="dataSource" matSort>                 
+                <ng-container matColumnDef="leave_id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header><b>Id</b></th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.leave_id}}
+                    </td>
+            </ng-container>    
+                <ng-container matColumnDef="emp_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header><b>Name</b></th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.emp_name}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="emp_contact">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> <b>Contact</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.emp_contact}} 
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dept_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> <b>Department</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.dept_name}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="desc">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> <b>Description</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.desc}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sdate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header > <b>From</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.sdate | date: 'dd/MM/yyyy'}} 
+                    </td>
+                </ng-container>
+                
+                
+                <ng-container matColumnDef="edate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> <b>To</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.edate |  date: 'dd/MM/yyyy'}}
+                    </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="approve">
+                    <th mat-header-cell *matHeaderCellDef> <b>Approve</b> </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <button mat-icon-button class="iconbutton color-green" 
+                        (click)="approve(element.leave_id)">
+                           <mat-icon class="mat-18">check_circle</mat-icon>
+                        </button>
+                    </td> 
+                </ng-container>
+                
+                <ng-container matColumnDef="disapprove">
+                    <th mat-header-cell *matHeaderCellDef> <b>Disapprove</b> </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button class="iconbutton color-red"  
+                        (click)="disapprove(element.leave_id)">
+                                <mat-icon class="mat-18">cancel</mat-icon>
+                            </button>
+                    </td> 
+                </ng-container>      
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>  
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait.Loading Data... </p>  
+</ngx-spinner> 

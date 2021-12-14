@@ -1,0 +1,57 @@
+<br>
+<div *ngIf="employee">
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Employee Details</h5>
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                        <div class="col-md-6">
+                            <p class="description"> <b>Name:</b>&nbsp;{{employee.name}}</p>
+                        </div>  
+                        <div class="col-md-6">
+                            <p class="description"> <b>Email:</b>&nbsp;{{employee.email}}</p>
+                        </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-6">
+                            <p class="description"> <b>Contact No:</b>&nbsp;{{employee.contact}}</p>
+                        </div>  
+                        <div class="col-md-6">
+                            <p class="description"> <b>Date of Birth:</b>&nbsp;{{employee.dateOfBirth | date:'dd-mm-yyyy'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="description"> <b>Salary:</b>&nbsp;{{employee.salary}}</p>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="description"> <b>Latitude:</b>&nbsp;{{employee.latitude}}</p>
+                        </div>  
+                        <div class="col-md-6">
+                            <p class="description"> <b>Longitude:</b>&nbsp;{{employee.longitude}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <p class="description">&nbsp;&nbsp;&nbsp;{{employee.address}}</p>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="http://localhost/api_management/Images/{{employee.imageName}}"
+                    height="200px" width="200px" style="align-self: center;">
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>

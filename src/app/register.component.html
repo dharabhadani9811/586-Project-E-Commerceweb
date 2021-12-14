@@ -1,0 +1,71 @@
+<form #registerForm="ngForm">
+    <div class="row">
+        <div class="col-md-7">
+            <div style="background-color: cadetblue;height: 100vh;display:flex; position:absolute; top:0; bottom:0; right:0; left:0; ">
+                <div id='div_you_want_centered' style='margin:auto;'>
+                    <p style="color:white;font-size: xx-large">E-Commerce Website</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div style="height: 100vh;display:flex; position:absolute; top:0; bottom:0; right:0; left:0; ">
+                <div id='div_you_want_centered' class="container" style="margin:auto;width: 90%;">
+                    <div class="form-group">
+                        <label> First Name</label>
+                        <input required type="text" class="form-control" [(ngModel)]="user.FirstName" name="fname"
+                            #fname="ngModel">
+                        <div class="text-danger" *ngIf="fname.touched">
+                            <p *ngIf="fname.errors?.required">Required</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> Last Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="user.LastName" name="lname" #lname="ngModel">
+                        <div class="text-danger" *ngIf="lname.touched">
+                            <p *ngIf="lname.errors?.required">Required</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> Email ID</label>
+                        <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" class="form-control"
+                            [(ngModel)]="user.EmailID" name="email" #email="ngModel">
+                        <div class="text-danger" *ngIf="email.touched">
+                            <p *ngIf="email.errors?.required">Required</p>
+                            <p *ngIf="email.errors?.pattern">Invalid email id</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input required type="password" class="form-control" [(ngModel)]="user.Password" name="pass" #pass="ngModel">
+                        <div class="text-danger" *ngIf="pass.touched">
+                            <p *ngIf="pass.errors?.required">Required</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" [pattern]="user.Password" class="form-control" [(ngModel)]="confPass" name="cpass"
+                            #cpass="ngModel">
+                        <div class="text-danger" *ngIf="cpass.touched">
+                            <p *ngIf="cpass.errors?.required">Required</p>
+                            <p *ngIf="cpass.errors?.pattern">Invalid password</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> Address</label>
+                        <input required type="text" class="form-control" [(ngModel)]="user.Address" name="addr" #addr="ngModel">
+                        <div class="text-danger" *ngIf="addr.touched">
+                            <p *ngIf="addr.errors?.required">Required</p>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" (click)="register()"
+                        [disabled]="registerForm.invalid">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait...</p>
+</ngx-spinner>

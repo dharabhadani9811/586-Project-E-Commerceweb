@@ -1,0 +1,68 @@
+<br>
+<div class="row">
+    <div class="col-md-2">
+        <button mat-raised-button  (click)="goToCreate()">
+            <mat-icon>add</mat-icon>Create&nbsp;
+        </button>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search..."
+        (keyup)="doFilter($event.target.value)">
+    </div>
+</div>
+<br>
+<div *ngIf= "isLoaded">
+    <mat-radio-group>
+        <mat-radio-button checked value="all" (change)="filterDept($event)">All ({{all}})&nbsp;&nbsp;</mat-radio-button>
+        <mat-radio-button value="Full-Time" (change)="filterDept($event)">Full-Time ({{fullTime}})&nbsp;&nbsp;</mat-radio-button>
+        <mat-radio-button value="Part-Time" (change)="filterDept($event)">Part-Time ({{partTime}})</mat-radio-button>
+    </mat-radio-group>
+</div>
+<br>
+<div class="mat-elevation-z8" *ngIf= "isLoaded">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="dept_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.dept_id}} </td>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="dept_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.dept_name}} </td>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="dept_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.dept_type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-icon-button class="iconbutton" color="primary" (click)="edit(element.dept_id)">
+                    <mat-icon class="mat-18">edit</mat-icon>
+                </button>
+            </td> 
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-icon-button class="iconbutton" color="warn" (click)="delete(element.dept_id)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                </button>
+            </td> 
+        </ng-container>      
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait.Loading Data... </p>
+</ngx-spinner>

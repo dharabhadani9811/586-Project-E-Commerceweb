@@ -1,0 +1,51 @@
+<div class="container " *ngIf="cartProducts?.length >0">
+
+    <h3> Cart Products : {{TotalItems}} item(s)</h3>
+
+    <div class="card">
+        <div class="row" *ngFor="let prod of cartProducts;let i=index" style="padding:10px">
+            <div class="col-md-3">
+                <img src="{{imageUrl}}/{{prod.ProductImage}}" class="img img-thumbnail" height="100px" width="200px">
+            </div>
+            <div class="col-md-9 row">
+                <div class="col-md-11">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-3 text-uppercase small" style="font-size: larger">
+                            {{prod.ProductName}}
+                        </p>
+                        <select [(ngModel)]="prod.ProductQty" (change)="onQtyChanged(i,prod.ProductPrice,prod.ProductQty)"
+                            style="width:40px;height:30px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <p class="mb-2 text-muted text-uppercase small">{{prod.CategoryName}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a style="color:#0091ff" (click)="removeProduct(prod.ProductID)"
+                                type="button" class="card-link-secondary small text-uppercase mr-3"><i class="fas fa-trash-alt mr-1"></i>
+                                Remove item </a>
+                        </div>
+                        <p class="mb-0"><span><strong>₹{{prod.ProductPrice}}</strong></span></p>
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" style="padding:10px">
+            <div class="col-md-9">
+                <button class="btn btn-primary btn-lg" (click)="checkout()"
+                style="height:50px"> Place Order</button>
+            </div>
+            <div class="col-md-3" style="text-align: end">
+                <p style="font-size:larger"> Total Price: ₹{{TotalPrice}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait... </p>
+</ngx-spinner>

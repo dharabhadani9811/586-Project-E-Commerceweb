@@ -1,0 +1,46 @@
+<form #loginForm="ngForm">
+    <div class="row">
+        <div class="col-md-7">
+            <div style="background-color: cadetblue;height: 97vh;display:flex; position:absolute; top:0; bottom:0; right:0; left:0; ">
+                <div id='div_you_want_centered' style='margin:auto;'>
+                    <p style="color:white;font-size: xx-large">E-Commerce Website</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div style="height: 97vh;display:flex; position:absolute; top:0; bottom:0; right:0; left:0; ">
+                <div id='div_you_want_centered' class="container" style="margin:auto;width: 90%;">
+                    <div class="form-group">
+                        <label> Login as</label>
+                        <select [(ngModel)]="type" name="type" class="form-control">
+                            <option value="0">--Select--</option>
+                            <option value="1">Admin</option>
+                            <option value="2">User</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label> Email ID</label>
+                        <input required type="text" class="form-control" [(ngModel)]="email" name="em">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input required type="password" class="form-control" [(ngModel)]="password" name="pass">
+                    </div>
+                    <!-- <div class="float-right">
+                        <a style="color:blue;cursor: pointer;" (click)="forgot()"> 
+                            Forgot Password ? Click here</a>
+                    </div> -->
+                    <br><br>
+                    <div>
+                        <button class="btn btn-primary" (click)="login()" [disabled]="!loginForm.valid || type == '0'">
+                            Login</button>
+                        &nbsp;&nbsp;<a routerLink="/register" style="color:blue;cursor: pointer;"> New User ? Register here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait... </p>
+</ngx-spinner>

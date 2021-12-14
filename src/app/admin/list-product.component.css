@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+  }
+
+  input[type=text] {
+    width: 150px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=text]:focus {
+    width: 50%;
+  }
